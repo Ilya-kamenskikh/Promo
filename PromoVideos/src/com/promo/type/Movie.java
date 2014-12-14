@@ -2,7 +2,7 @@ package com.promo.type;
 
 import java.util.Date;
 
-public class Move {
+public class Movie {
 	private String name;
 	private Integer audience;
 	private Integer price;
