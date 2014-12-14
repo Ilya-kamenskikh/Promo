@@ -1,12 +1,12 @@
 package com.promo;
 
 public class Model {
-	public ArrayList <String> companies = new ArrayList <String>;//Контейнер именкомпаний
+	public List<Company> companies = new ArrayList<Company>();//Контейнер именкомпаний
 	public void addCompany(name){
 		Company company = new Company;
 		company.setName();
 		company.setBudget();
-		companies.add(company.getName());
+		companies.add(company);
 		String dir = "C:/companies/"+company.getName;
 		File f = new File(dir);
 		f.mkdir();
