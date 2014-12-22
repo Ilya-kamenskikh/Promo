@@ -11,6 +11,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import application.view.CompanyLoginDialogController;
 import application.view.EntryController;
+import application.view.RegDialogController;
 
 public class MainApp extends Application {
 	private Stage primaryStage;
@@ -121,6 +122,33 @@ public class MainApp extends Application {
             dialogStage.setScene(scene);
             
             CompanyLoginDialogController controller = loader.getController();
+            controller.setDialogStage(dialogStage);
+            
+            // Show the dialog and wait until the user closes it
+            dialogStage.showAndWait();
+            
+            
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void showRegLoginDialog() {
+    	try {
+            // Load person overview.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class.getResource("view/RegDialog.fxml"));
+            AnchorPane page = (AnchorPane) loader.load();
+     
+            // Create the dialog Stage.
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Registration");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(primaryStage);
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+            
+            RegDialogController controller = loader.getController();
             controller.setDialogStage(dialogStage);
             
             // Show the dialog and wait until the user closes it

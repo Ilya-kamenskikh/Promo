@@ -23,7 +23,7 @@ public class EntryController {
 	}
 	@FXML
 	private void handleReg() {
-		
+		mainApp.showRegLoginDialog();
 	}
 	public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
