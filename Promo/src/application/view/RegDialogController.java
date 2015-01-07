@@ -9,6 +9,7 @@ import java.io.PrintWriter;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
@@ -22,7 +23,7 @@ public class RegDialogController {
 	@FXML
     private TextField userName;
     @FXML
-    private TextField password;
+    private PasswordField password;
     @FXML
     private RadioButton Company;
     @FXML
@@ -53,6 +54,8 @@ public class RegDialogController {
     		errorMessage += "No valid password!\n";
     	}
     	
+    	
+    	
     	if (errorMessage.length() == 0) {
     		return true;
     	} else {
@@ -63,6 +66,49 @@ public class RegDialogController {
     			.showError();
     		return false;
     	}
+    }
+    
+    private boolean isInputExist(String name) {
+    	File file = new File(name);
+    	String errorMessage = "";
+    	try {
+    		if(!file.exists()){
+				file.createNewFile();
+				return true;
+			}
+    		
+	    	 BufferedReader in = new BufferedReader(
+	             new InputStreamReader(
+	                 new FileInputStream( file.getAbsoluteFile() ), "UTF-8"
+	             )
+	         );
+	    	 try {
+	    		 String s = null;
+	    		 while ((s = in.readLine())!=null){
+	    			 if (s.substring(0, s.indexOf(':')).equals(userName.getText())){
+	    				 errorMessage = "this username already exist";
+	    				 break;
+	    			 }
+	    		 }
+	    	 } finally {
+	             in.close();
+	         }
+    	} catch(IOException e) {
+            throw new RuntimeException(e);
+        }
+    	
+    	if (errorMessage.length() == 0) {
+    		return true;
+    	} else {
+    		Dialogs.create()
+			.title("Login exists")
+			.masthead("Please change your login")
+			.message(errorMessage)
+			.showError();
+    		return false;
+    	}
+    	
+    	
     }
     
     private String readFile(String name){
@@ -125,11 +171,17 @@ public class RegDialogController {
     private void handleSignUp() {
     	if (isInputValid()) {
     		if (group.getSelectedToggle().equals(Company)) {
-        		writeFile("Company", readFile("Company") +  userName.getText() + ":" + password.getText() + ":" + name.getText() + " ");
+    			if (isInputExist("Company.txt")) {
+        			writeFile("Company.txt", readFile("Company.txt") +  userName.getText() + ":" + password.getText() + ":" + name.getText() + "\n");
+        			dialogStage.close();
+    			}
         	} else {
-        		writeFile("TV channel", readFile("TV channel") +  userName.getText() + ":" + password.getText() + ":" + name.getText() + " "); 
+        		if (isInputExist("TV channel.txt")) {
+        			writeFile("TV channel.txt", readFile("TV channel.txt") +  userName.getText() + ":" + password.getText() + ":" + name.getText() + "\n");
+        			dialogStage.close();
+        		}
         	}
-    		dialogStage.close();
+    		
     	}
     }
 }

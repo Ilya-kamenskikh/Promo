@@ -31,7 +31,7 @@
             <Label text="Password" GridPane.rowIndex="2" />
             <TextField fx:id="name" GridPane.columnIndex="1" />
             <TextField fx:id="userName" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="password" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <PasswordField fx:id="password" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
       <Label layoutX="51.0" layoutY="183.0" text="Who are you?" />

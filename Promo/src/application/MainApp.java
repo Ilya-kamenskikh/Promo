@@ -17,22 +17,17 @@ public class MainApp extends Application {
 	private Stage primaryStage;
 	private BorderPane rootLayout;
 
-    public MainApp() {
-        // Add some sample data
-        
-    }
-    
-    
 	@Override
 	public void start(Stage primaryStage) {
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle("Promo");
 		
 		initRootLayout();
-		
 		showEntryLayout();
 	}
 
+	
+	
     public void initRootLayout() {
         try {
             // Load root layout from fxml file.
@@ -71,7 +66,6 @@ public class MainApp extends Application {
     
     public void showCompanyLayout() {
         try {
-            // Load person overview.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApp.class.getResource("view/CompanyLayout.fxml"));
             AnchorPane companyLayout = (AnchorPane) loader.load();
@@ -81,7 +75,7 @@ public class MainApp extends Application {
             rootLayout.setCenter(companyLayout);
             
             // Give the controller access to the main app.
-            //PersonOverviewController controller = loader.getController();
+            //CompanyLayoutController controller = loader.getController();
             //controller.setMainApp(this);
         } catch (IOException e) {
             e.printStackTrace();
@@ -90,17 +84,16 @@ public class MainApp extends Application {
     
     public void showChannelLayout() {
         try {
-            // Load person overview.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApp.class.getResource("view/ChannelLayout.fxml"));
             AnchorPane channelLayout = (AnchorPane) loader.load();
-     
-            // Set person overview into the center of root layout.
+            
             rootLayout.setCenter(channelLayout);
             
             // Give the controller access to the main app.
-            //PersonOverviewController controller = loader.getController();
+            //ChannelLayoutController controller = loader.getController();
             //controller.setMainApp(this);
+            
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -115,7 +108,7 @@ public class MainApp extends Application {
      
             // Create the dialog Stage.
             Stage dialogStage = new Stage();
-            dialogStage.setTitle("Login");
+            dialogStage.setTitle("Login Company");
             dialogStage.initModality(Modality.WINDOW_MODAL);
             dialogStage.initOwner(primaryStage);
             Scene scene = new Scene(page);
@@ -123,6 +116,7 @@ public class MainApp extends Application {
             
             CompanyLoginDialogController controller = loader.getController();
             controller.setDialogStage(dialogStage);
+            controller.setMainApp(this);
             
             // Show the dialog and wait until the user closes it
             dialogStage.showAndWait();
@@ -132,7 +126,7 @@ public class MainApp extends Application {
             e.printStackTrace();
         }
     }
-    
+        
     public void showRegLoginDialog() {
     	try {
             // Load person overview.

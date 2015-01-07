@@ -15,10 +15,12 @@ public class EntryController {
 	
 	@FXML
 	private void handleOpenCompany() {
+		CompanyLoginDialogController.setFlag(true);
 		mainApp.showCompanyLoginDialog();
 	}
 	@FXML
 	private void handleOpenChannel() {
+		CompanyLoginDialogController.setFlag(false);
 		mainApp.showCompanyLoginDialog();
 	}
 	@FXML
