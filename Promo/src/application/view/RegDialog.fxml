@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
@@ -34,16 +35,16 @@
          </children>
       </GridPane>
       <Label layoutX="51.0" layoutY="183.0" text="Who are you?" />
-      <HBox layoutX="150.0" layoutY="183.0">
+      <Group>
          <children>
-            <RadioButton fx:id="Company" layoutX="150.0" layoutY="183.0" mnemonicParsing="false" text="Company">
-               <HBox.margin>
-                  <Insets right="10.0" />
-               </HBox.margin>
+            <RadioButton fx:id="Company" layoutX="150.0" layoutY="183.0" mnemonicParsing="false" selected="true" text="Company">
+               <toggleGroup>
+                  <ToggleGroup fx:id="group" />
+               </toggleGroup>
             </RadioButton>
-            <RadioButton fx:id="TV_channel" layoutX="255.0" layoutY="183.0" mnemonicParsing="false" text="TV channel" />
+            <RadioButton fx:id="TV_channel" layoutX="255.0" layoutY="183.0" mnemonicParsing="false" text="TV channel" toggleGroup="$group" />
          </children>
-      </HBox>
+      </Group>
       <HBox layoutX="239.0" layoutY="247.0">
          <children>
             <Button layoutX="239.0" layoutY="247.0" mnemonicParsing="false" onAction="#handleSignUp" prefWidth="55.0" text="Sign up">
@@ -54,5 +55,6 @@
             <Button layoutX="301.0" layoutY="247.0" mnemonicParsing="false" onAction="#handleCancel" prefWidth="55.0" text="Cansel" />
          </children>
       </HBox>
+      <Label fx:id="message" layoutX="187.0" layoutY="59.0" />
    </children>
 </AnchorPane>
