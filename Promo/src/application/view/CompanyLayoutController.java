@@ -56,10 +56,10 @@ public class CompanyLayoutController {
 			themeMovieLabel.setText(movie.getTheme());
 			audienceMovieLabel.setText(Integer.toString(movie.getAudience()));
 		} else {
-			nameMovieLabel.setText("");
-			timeMovieLabel.setText("");
-			themeMovieLabel.setText("");
-			audienceMovieLabel.setText("");
+			nameMovieLabel.setText("none");
+			timeMovieLabel.setText("none");
+			themeMovieLabel.setText("none");
+			audienceMovieLabel.setText("none");
 		}
 	}
 	
