@@ -148,7 +148,6 @@ public class RegDialogController {
 			PrintWriter out = new PrintWriter(file);
 			
 			try {
-				//text = readFile(name) + text;
 				out.append(text);
 			} finally {
 	            out.close();

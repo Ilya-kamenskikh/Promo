@@ -6,23 +6,29 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import javafx.fxml.FXML;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+
 import org.controlsfx.dialog.Dialogs;
 
 import application.MainApp;
-import javafx.fxml.FXML;
-import javafx.scene.control.TextField;
-import javafx.stage.Stage;
+import application.model.Channel;
+import application.model.Company;
 
 public class CompanyLoginDialogController {
 
 	@FXML
     private TextField userName;
     @FXML
-    private TextField password;
+    private PasswordField password;
 	
     private Stage dialogStage;
     
     private MainApp mainApp;
+    
+    private String nameC;
 
     private static boolean flag;
     
@@ -46,10 +52,13 @@ public class CompanyLoginDialogController {
 	    			 errorMessage = "This username not exist";
 	    			 if (s.substring(0, s.indexOf(':')).equals(userName.getText())){
 	    				 errorMessage = "";
+	    				 
 	    				 if (!s.substring(s.indexOf(':')+1, s.lastIndexOf(':')).equals(password.getText())){
 	    					 errorMessage += "This password not exist";
 	    					 break;
 	    				 }
+	    				 nameC = s.substring(s.lastIndexOf(':')+1);
+	    				 break;
 	    			 }
 	    		 }
 	    	 } finally {
@@ -118,14 +127,21 @@ public class CompanyLoginDialogController {
     @FXML
     private void handleLogin() {
     	if (isInputValid()) {
+    		
     		if (flag) {
     			if (isInputExist("Company.txt")) {
     				dialogStage.close();
+    				mainApp.setCompany(new Company(nameC));
+    				if (!mainApp.getCompany().getMovies().isEmpty())
+    					mainApp.getMovieData().setAll(mainApp.getCompany().getMovies());
     				mainApp.showCompanyLayout();
     			}
     		} else {
     			if (isInputExist("TV channel.txt")) {
     				dialogStage.close();
+    				mainApp.setChannel(new Channel(nameC));
+    				if (!mainApp.getChannel().getMovies().isEmpty())
+    					mainApp.getMovieData().setAll(mainApp.getChannel().getMovies());
     				mainApp.showChannelLayout();
     			}
     		}

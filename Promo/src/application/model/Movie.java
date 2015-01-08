@@ -7,6 +7,7 @@ import javafx.beans.property.StringProperty;
 
 public class Movie {
 	private final StringProperty name;
+	private final StringProperty nameChannel;
 	private final StringProperty time;
 	private final StringProperty theme;
 	private final IntegerProperty audience;
@@ -20,6 +21,7 @@ public class Movie {
 		this.time = new SimpleStringProperty(time);
 		this.theme = new SimpleStringProperty(theme);
 		this.audience = new SimpleIntegerProperty(audience);
+		this.nameChannel = new SimpleStringProperty("not found");
 	}
 	
 	public String getName() {
@@ -30,6 +32,16 @@ public class Movie {
 	}
 	public StringProperty nameProperty(){
 		return name;
+	}
+	
+	public String getNameChannel() {
+		return nameChannel.get();
+	}
+	public void setNameChannel(String name) {
+		this.nameChannel.set(name);
+	}
+	public StringProperty nameChannelProperty(){
+		return nameChannel;
 	}
 	
 	public String getTime() {

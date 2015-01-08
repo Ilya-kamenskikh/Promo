@@ -11,22 +11,23 @@ import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-public class Company {
+public class Channel {
 	private final StringProperty name;
-	private final IntegerProperty budget;
+	private final IntegerProperty dayPrice; 
+	private final IntegerProperty nightPrice; 
 	private ListProperty<Movie> movies;
 	
-	public Company() {
+	public Channel() {
 		this(null);
 	}
 	
-	public Company(String name){
+	public Channel(String name) {
 		this.name = new SimpleStringProperty(name);
-		this.budget = new SimpleIntegerProperty(1000);
-		
+		this.dayPrice = new SimpleIntegerProperty(1234);
+		this.nightPrice = new SimpleIntegerProperty(4321);
 		this.movies = new SimpleListProperty<Movie>(FXCollections.observableArrayList());
 	}
-
+	
 	public String getName() {
 		return name.get();
 	}
@@ -36,17 +37,27 @@ public class Company {
 	public StringProperty nameProperty() {
 		return name;
 	}
-
-	public int getBudget() {
-		return budget.get();
+	
+	public int getDayPrice() {
+		return dayPrice.get();
 	}
-	public void setBudget(int budget) {
-		this.budget.set(budget);
+	public void setDayPrice(int price) {
+		this.dayPrice.set(price);
 	}
-	public IntegerProperty budgetProperty() {
-		return budget;
+	public IntegerProperty dayPriceProperty() {
+		return dayPrice;
 	}
-
+	
+	public int getNightPrice() {
+		return nightPrice.get();
+	}
+	public void setNightPrice(int price) {
+		this.nightPrice.set(price);
+	}
+	public IntegerProperty nightPriceProperty() {
+		return nightPrice;
+	}
+	
 	public List<Movie> getMovies() {
 		return movies.get();
 	}
@@ -56,6 +67,4 @@ public class Company {
 	public ListProperty<Movie> moviesProperty() {
 		return movies;
 	}
-	
-	
 }

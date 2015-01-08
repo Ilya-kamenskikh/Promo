@@ -42,8 +42,8 @@
                               <Font name="System Bold Italic" size="12.0" />
                            </font>
                         </Label>
-                        <Label fx:id="dayPrice" prefHeight="0.0" prefWidth="26.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Label fx:id="nightPrice" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label fx:id="dayPriceLabel" prefHeight="0.0" prefWidth="26.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label fx:id="nightPriceLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                      </children>
                   </GridPane>
                   <Label layoutX="66.0" layoutY="14.0" text="Channel name:">
@@ -51,15 +51,16 @@
                         <Font name="System Bold" size="11.0" />
                      </font>
                   </Label>
-                  <Label fx:id="name" layoutX="152.0" layoutY="14.0" text="Label" />
+                  <Label fx:id="nameLabel" layoutX="152.0" layoutY="14.0" text="Label" />
+                  <Button layoutX="16.0" layoutY="360.0" mnemonicParsing="false" onAction="#handleLogout" text="Logout" />
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <TableView fx:id="content" layoutX="6.0" layoutY="22.0" prefHeight="339.0" prefWidth="339.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <TableView fx:id="content" layoutX="6.0" layoutY="22.0" prefHeight="186.0" prefWidth="339.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columns>
                       <TableColumn fx:id="title" prefWidth="75.0" text="Title" />
-                      <TableColumn fx:id="company" prefWidth="75.0" text="Company" />
+                      <TableColumn fx:id="time" prefWidth="75.0" text="Time" />
                     </columns>
                      <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -75,6 +76,10 @@
                         <Button layoutX="203.0" layoutY="284.0" mnemonicParsing="false" onAction="#handleReject" text="Reject" />
                      </children>
                   </HBox>
+                  <Label layoutX="52.0" layoutY="220.0" text="Theme" />
+                  <Label layoutX="52.0" layoutY="263.0" text="Audience" />
+                  <Label fx:id="themeLabel" layoutX="211.0" layoutY="220.0" text="Label" />
+                  <Label fx:id="audienceLabel" layoutX="211.0" layoutY="263.0" text="Label" />
                </children>
             </AnchorPane>
         </items>

@@ -3,12 +3,19 @@ package application;
 import java.io.IOException;
 
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import application.model.Channel;
+import application.model.Company;
+import application.model.Movie;
+import application.view.ChannelLayoutController;
+import application.view.CompanyLayoutController;
 import application.view.CompanyLoginDialogController;
 import application.view.EntryController;
 import application.view.RegDialogController;
@@ -16,6 +23,29 @@ import application.view.RegDialogController;
 public class MainApp extends Application {
 	private Stage primaryStage;
 	private BorderPane rootLayout;
+	private ObservableList<Movie> movieData = FXCollections.observableArrayList();
+	private Company company;
+	private Channel channel;
+	
+	public ObservableList<Movie> getMovieData() {
+		return movieData;
+	}
+	
+	public void setChannel(Channel channel) {
+		this.channel = channel;
+	}
+	
+	public Channel getChannel() {
+		return channel;
+	}
+	
+	public void setCompany(Company company) {
+		this.company = company;
+	}
+	
+	public Company getCompany() {
+		return company;
+	}
 
 	@Override
 	public void start(Stage primaryStage) {
@@ -26,16 +56,18 @@ public class MainApp extends Application {
 		showEntryLayout();
 	}
 
-	
+	public MainApp(){
+		//movieData.add(new Movie());
+		//movieData.add(new Movie("Bad", "14", "g", 14));
+		//movieData.addAll(company.getMovies());
+	}
 	
     public void initRootLayout() {
         try {
-            // Load root layout from fxml file.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApp.class.getResource("view/RootLayout.fxml"));
             rootLayout = (BorderPane) loader.load();
 
-            // Show the scene containing the root layout.
             Scene scene = new Scene(rootLayout);
             primaryStage.setScene(scene);
             primaryStage.show();
@@ -46,17 +78,12 @@ public class MainApp extends Application {
 
     public void showEntryLayout() {
         try {
-            // Load person overview.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApp.class.getResource("view/EntryLayout.fxml"));
             AnchorPane entryLayout = (AnchorPane) loader.load();
             
-            
-
-            // Set person overview into the center of root layout.
             rootLayout.setCenter(entryLayout);
             
-            // Give the controller access to the main app.
             EntryController controller = loader.getController();
             controller.setMainApp(this);
         } catch (IOException e) {
@@ -70,13 +97,12 @@ public class MainApp extends Application {
             loader.setLocation(MainApp.class.getResource("view/CompanyLayout.fxml"));
             AnchorPane companyLayout = (AnchorPane) loader.load();
      
-
-            // Set person overview into the center of root layout.
             rootLayout.setCenter(companyLayout);
             
-            // Give the controller access to the main app.
-            //CompanyLayoutController controller = loader.getController();
-            //controller.setMainApp(this);
+            CompanyLayoutController controller = loader.getController();
+            controller.setMainApp(this);
+            controller.showCompany();
+            
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -90,9 +116,9 @@ public class MainApp extends Application {
             
             rootLayout.setCenter(channelLayout);
             
-            // Give the controller access to the main app.
-            //ChannelLayoutController controller = loader.getController();
-            //controller.setMainApp(this);
+            ChannelLayoutController controller = loader.getController();
+            controller.setMainApp(this);
+            controller.showChannel();
             
         } catch (IOException e) {
             e.printStackTrace();
