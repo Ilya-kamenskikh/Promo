@@ -47,12 +47,13 @@
                         <Label fx:id="audienceMovieLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                      </children>
                   </GridPane>
-                  <Button layoutX="218.0" layoutY="351.0" mnemonicParsing="false" onAction="#handleNewList" text="New list" />
+                  <Button layoutX="218.0" layoutY="351.0" mnemonicParsing="false" onAction="#handleNewMovie" text="New Movie" />
                   <Button layoutX="318.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleLogout" text="Logout" />
                   <Label fx:id="nameCompanyLabel" layoutX="205.0" layoutY="14.0" text="Label" />
                   <Label layoutX="104.0" layoutY="34.0" text="Budget:" />
                   <Label fx:id="budgetCompanyLabel" layoutX="205.0" layoutY="34.0" text="Label" />
                   <Label layoutX="104.0" layoutY="14.0" text="Company name:" />
+                  <Button layoutX="274.0" layoutY="38.0" mnemonicParsing="false" onAction="#handleChangeAccount" text="Change account" />
                </children>
             </AnchorPane>
         </items>

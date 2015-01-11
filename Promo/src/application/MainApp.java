@@ -15,9 +15,11 @@ import application.model.Channel;
 import application.model.Company;
 import application.model.Movie;
 import application.view.ChannelLayoutController;
+import application.view.CompanyChangeAccountController;
 import application.view.CompanyLayoutController;
 import application.view.CompanyLoginDialogController;
 import application.view.EntryController;
+import application.view.NewMovieDialogController;
 import application.view.RegDialogController;
 
 public class MainApp extends Application {
@@ -26,6 +28,15 @@ public class MainApp extends Application {
 	private ObservableList<Movie> movieData = FXCollections.observableArrayList();
 	private Company company;
 	private Channel channel;
+	private String login;
+	
+	public void setLogin(String login) {
+		this.login = login;
+	}
+	
+	public String getLogin(){
+		return login;
+	}
 	
 	public ObservableList<Movie> getMovieData() {
 		return movieData;
@@ -170,6 +181,62 @@ public class MainApp extends Application {
             
             RegDialogController controller = loader.getController();
             controller.setDialogStage(dialogStage);
+            
+            // Show the dialog and wait until the user closes it
+            dialogStage.showAndWait();
+            
+            
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void showNewMovieDialog() {
+    	try {
+            // Load person overview.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class.getResource("view/NewMovieDialog.fxml"));
+            AnchorPane page = (AnchorPane) loader.load();
+     
+            // Create the dialog Stage.
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Add movie");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(primaryStage);
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+            
+            NewMovieDialogController controller = loader.getController();
+            controller.setDialogStage(dialogStage);
+            controller.setMainApp(this);
+            
+            // Show the dialog and wait until the user closes it
+            dialogStage.showAndWait();
+            
+            
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void showCompanyChangeAccount() {
+    	try {
+            // Load person overview.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class.getResource("view/CompanyChangeAccountDialog.fxml"));
+            AnchorPane page = (AnchorPane) loader.load();
+     
+            // Create the dialog Stage.
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Change Account");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(primaryStage);
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+            
+            CompanyChangeAccountController controller = loader.getController();
+            controller.setDialogStage(dialogStage);
+            controller.setMainApp(this);
             
             // Show the dialog and wait until the user closes it
             dialogStage.showAndWait();

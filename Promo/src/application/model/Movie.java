@@ -1,7 +1,7 @@
 package application.model;
 
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -9,18 +9,18 @@ public class Movie {
 	private final StringProperty name;
 	private final StringProperty nameChannel;
 	private final StringProperty time;
-	private final StringProperty theme;
-	private final IntegerProperty audience;
+	private final ObjectProperty<Theme> theme;
+	private final ObjectProperty<Audience> audience;
 	
 	public Movie() {
 		this(null, null, null, null);
 	}
 	
-	public Movie(String name, String time, String theme, Integer audience) {
+	public Movie(String name, String time, Theme theme, Audience audience) {
 		this.name = new SimpleStringProperty(name);
 		this.time = new SimpleStringProperty(time);
-		this.theme = new SimpleStringProperty(theme);
-		this.audience = new SimpleIntegerProperty(audience);
+		this.theme = new SimpleObjectProperty<Theme>(theme);
+		this.audience = new SimpleObjectProperty<Audience>(audience);
 		this.nameChannel = new SimpleStringProperty("not found");
 	}
 	
@@ -54,23 +54,23 @@ public class Movie {
 		return time;
 	}
 	
-	public String getTheme() {
+	public Theme getTheme() {
 		return theme.get();
 	}
-	public void setTheme(String theme) {
+	public void setTheme(Theme theme) {
 		this.theme.set(theme);
 	}
-	public StringProperty themeProperty(){
+	public ObjectProperty<Theme> themeProperty(){
 		return theme;
 	}
 	
-	public int getAudience() {
+	public Audience getAudience() {
 		return audience.get();
 	}
-	public void setAudience(int audience) {
+	public void setAudience(Audience audience) {
 		this.audience.set(audience);
 	}
-	public IntegerProperty audienceProperty(){
+	public ObjectProperty<Audience> audienceProperty(){
 		return audience;
 	}
 	

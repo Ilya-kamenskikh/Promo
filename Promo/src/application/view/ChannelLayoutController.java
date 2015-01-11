@@ -63,8 +63,8 @@ public class ChannelLayoutController{
 	}
 	private void showMovieDetails(Movie movie) {
 		if (movie!= null) {
-			themeLabel.setText(movie.getTheme());
-			audienceLabel.setText(Integer.toString(movie.getAudience()));
+			themeLabel.setText(movie.getTheme().toString());
+			audienceLabel.setText(movie.getAudience().toString());
 		} else {
 			themeLabel.setText("none");
 			audienceLabel.setText("none");

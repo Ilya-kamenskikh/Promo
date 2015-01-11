@@ -132,8 +132,9 @@ public class CompanyLoginDialogController {
     			if (isInputExist("Company.txt")) {
     				dialogStage.close();
     				mainApp.setCompany(new Company(nameC));
-    				if (!mainApp.getCompany().getMovies().isEmpty())
+    				//if (!mainApp.getCompany().getMovies().isEmpty())
     					mainApp.getMovieData().setAll(mainApp.getCompany().getMovies());
+    				mainApp.setLogin(userName.getText());
     				mainApp.showCompanyLayout();
     			}
     		} else {

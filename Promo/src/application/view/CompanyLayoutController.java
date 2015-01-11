@@ -41,7 +41,14 @@ public class CompanyLayoutController {
 	}
 	
 	@FXML
-	private void handleNewList(){}
+	private void handleNewMovie(){	
+		mainApp.showNewMovieDialog();
+	}
+	
+	@FXML
+	private void handleChangeAccount() {
+		mainApp.showCompanyChangeAccount();
+	}
 	
 	@FXML
 	private void handleLogout(){
@@ -53,8 +60,14 @@ public class CompanyLayoutController {
 		if (movie!= null) {
 			nameMovieLabel.setText(movie.getName());
 			timeMovieLabel.setText(movie.getTime());
-			themeMovieLabel.setText(movie.getTheme());
-			audienceMovieLabel.setText(Integer.toString(movie.getAudience()));
+			themeMovieLabel.setText(movie.getTheme().toString());
+			switch(movie.getAudience()) {
+				case FOR_ALL:audienceMovieLabel.setText("0+"); break;
+				case CHILDREN:audienceMovieLabel.setText("12+"); break;
+				case TEENS:audienceMovieLabel.setText("16+"); break;
+				case YOUTH:audienceMovieLabel.setText("18+"); break;
+			}
+			//audienceMovieLabel.setText(movie.getAudience().toString());
 		} else {
 			nameMovieLabel.setText("none");
 			timeMovieLabel.setText("none");
@@ -67,6 +80,7 @@ public class CompanyLayoutController {
 		nameCompanyLabel.setText(mainApp.getCompany().getName());
 		budgetCompanyLabel.setText(Integer.toString( mainApp.getCompany().getBudget()));
 	}
+	
 	public void setMainApp(MainApp mainApp) {
 		this.mainApp = mainApp;
 		
