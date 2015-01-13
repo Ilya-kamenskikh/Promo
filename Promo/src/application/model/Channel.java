@@ -76,13 +76,7 @@ public class Channel {
 		    				case "TEENS": audience = Audience.TEENS; break;
 		    				case "YOUTH": audience = Audience.YOUTH; break;
 	                    }
-	                    s = s.substring(s.indexOf(":")+1);
-	                    if (s.substring(s.indexOf(":")+1).equals("notfound")) {
-	                    	getMovies().add(new Movie(nameMovie, timeMovie, theme, audience));
-	                    } else {
-	                    	s.replace("_", " ");
-	                    	getMovies().add(new Movie(nameMovie, timeMovie, theme, audience, s));
-	                    }
+	                    getMovies().add(new Movie(nameMovie, timeMovie, theme, audience));
 	                }
 				} finally {
 					in.close();
