@@ -24,6 +24,14 @@ public class Movie {
 		this.nameChannel = new SimpleStringProperty("not found");
 	}
 	
+	public Movie(String name, String time, Theme theme, Audience audience, String nameChannel) {
+		this.name = new SimpleStringProperty(name);
+		this.time = new SimpleStringProperty(time);
+		this.theme = new SimpleObjectProperty<Theme>(theme);
+		this.audience = new SimpleObjectProperty<Audience>(audience);
+		this.nameChannel = new SimpleStringProperty(nameChannel);
+	}
+	
 	public String getName() {
 		return name.get();
 	}

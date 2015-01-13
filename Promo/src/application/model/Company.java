@@ -27,7 +27,7 @@ public class Company {
 	
 	public Company(String name){
 		this.movies = new SimpleListProperty<Movie>(FXCollections.observableArrayList());
-		File file = new File(name+".txt");
+		File file = new File("Companies\\"+name+".txt");
 		try {
     		if(!file.exists()){
 				file.createNewFile();
@@ -66,13 +66,19 @@ public class Company {
 		    				case "FOOD": theme = Theme.FOOD; break;
 		    				case "MOVIES": theme = Theme.MOVIES; break;
 	                    }
-	                    switch(s.substring(s.lastIndexOf(" ")+1)){
+	                    switch(s.substring(s.lastIndexOf(" ")+1, s.indexOf(":"))){
 		    				case "FOR_ALL": audience = Audience.FOR_ALL; break;
 		    				case "CHILDREN": audience = Audience.CHILDREN; break;
 		    				case "TEENS": audience = Audience.TEENS; break;
 		    				case "YOUTH": audience = Audience.YOUTH; break;
 	                    }
-	                    getMovies().add(new Movie(nameMovie, timeMovie, theme, audience));
+	                    s = s.substring(s.indexOf(":")+1);
+	                    if (s.substring(s.indexOf(":")+1).equals("notfound")) {
+	                    	getMovies().add(new Movie(nameMovie, timeMovie, theme, audience));
+	                    } else {
+	                    	s.replace("_", " ");
+	                    	getMovies().add(new Movie(nameMovie, timeMovie, theme, audience, s));
+	                    }
 	                }
 				} finally {
 					in.close();

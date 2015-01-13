@@ -34,6 +34,7 @@ public class NewMovieDialogController {
 	private MainApp mainApp;
 	private Theme t;
 	private Audience a;
+	private Movie movie;
 	
 	@FXML
 	private void initialize() {
@@ -58,9 +59,11 @@ public class NewMovieDialogController {
 				case "16+": a = Audience.TEENS; break;
 				case "18+": a = Audience.YOUTH; break;
 			}
-			mainApp.getCompany().getMovies().add(new Movie(name.getText(), time.getText(), t, a));
+			movie = new Movie(name.getText(), time.getText(), t, a);
+			mainApp.getCompany().getMovies().add(movie);
 			mainApp.getMovieData().setAll(mainApp.getCompany().getMovies());
 			dialogStage.close();
+			sendChannel();
 			writeFile();
 			//mainApp.showCompanyLayout();
 		}
@@ -82,7 +85,7 @@ public class NewMovieDialogController {
 	
 	private void writeFile() {
 		StringBuilder sb = new StringBuilder();
-		File file = new File(mainApp.getCompany().getName() + ".txt");
+		File file = new File("Companies\\"+mainApp.getCompany().getName() + ".txt");
 		try {
 			BufferedReader in = new BufferedReader(
             	new InputStreamReader(
@@ -95,7 +98,7 @@ public class NewMovieDialogController {
                     sb.append(s);
                     sb.append("\n");
                 }
-                sb.append(name.getText() + " " + time.getText() + " " + t.toString() + " " + a.toString());
+                sb.append(name.getText() + " " + time.getText() + " " + t.toString() + " " + a.toString() + ":" + "notfound");
                 sb.append("\n");
                 PrintWriter out = new PrintWriter(file);
     			
@@ -142,4 +145,59 @@ public class NewMovieDialogController {
     		return false;
     	}
     }
+	private void sendChannel() {
+		StringBuilder sb = new StringBuilder();
+		File file = new File("TV channel.txt");
+		File file1;
+		try {
+			BufferedReader in = new BufferedReader(
+		         new InputStreamReader(
+		             new FileInputStream( file.getAbsoluteFile() ), "UTF-8"
+		         )
+		    );
+			try {
+				String s = null;
+				String s1 = null;
+				while ((s = in.readLine())!=null) {
+					s = s.substring(s.lastIndexOf(":")+1);
+					file1 = new File("Channels\\" + s + ".txt");
+					if (file1.exists()) {
+						BufferedReader in1 = new BufferedReader(
+							new InputStreamReader(
+							    new FileInputStream( file1.getAbsoluteFile() ), "UTF-8"
+							)
+						);
+						try {
+							s1 = in1.readLine();
+							sb.append(s1);
+							sb.append("\n");
+							sb.append(name.getText() + " " + time.getText() + " " + t.toString() + " " + a.toString() + ":" + "notfound");
+							sb.append("\n");
+							if (movie.getAudience() == Audience.YOUTH) {
+								if (Integer.parseInt(s1.substring(s1.indexOf(" ")+1))*Integer.parseInt(movie.getTime()) < mainApp.getCompany().getBudget() ) {
+									mainApp.getCompany().setBudget(mainApp.getCompany().getBudget() - Integer.parseInt(s1.substring(s1.indexOf(" ")+1))*Integer.parseInt(movie.getTime()));
+								}
+							} else {
+								if (Integer.parseInt(s1.substring(0,s1.indexOf(" ")))*Integer.parseInt(movie.getTime()) < mainApp.getCompany().getBudget() ) {
+									mainApp.getCompany().setBudget(mainApp.getCompany().getBudget() - Integer.parseInt(s1.substring(0, s1.indexOf(" ")))*Integer.parseInt(movie.getTime()));
+								}
+							}
+						} finally {
+							in1.close();
+				        }
+						PrintWriter out = new PrintWriter(file1);
+						try {
+							out.print(sb);
+						} finally {
+				            out.close();
+				        }
+					}
+				}
+			} finally {
+				in.close();
+			}
+		} catch(IOException e) {
+            throw new RuntimeException(e);
+        }
+	}
 }

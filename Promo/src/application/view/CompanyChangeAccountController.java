@@ -31,7 +31,7 @@ public class CompanyChangeAccountController {
 	@FXML
 	private void handleOk(){
 		if (isInputValid()) {
-			File file = new File(mainApp.getCompany().getName() + ".txt");
+			File file = new File("Companies\\"+mainApp.getCompany().getName() + ".txt");
 			
 			if (!(budget.getText() == null || budget.getText().length() == 0)) {
 				mainApp.getCompany().setBudget(Integer.parseInt(budget.getText()));
@@ -66,7 +66,7 @@ public class CompanyChangeAccountController {
 		        }
 			}
 			if (!(name.getText() == null || name.getText().length() == 0)) {
-				file.renameTo(new File(name.getText() + ".txt"));
+				file.renameTo(new File("Companies\\"+name.getText() + ".txt"));
 				mainApp.getCompany().setName(name.getText());
 				changeCompanyName(name.getText());
 			}

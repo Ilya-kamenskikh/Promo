@@ -64,7 +64,12 @@ public class ChannelLayoutController{
 	private void showMovieDetails(Movie movie) {
 		if (movie!= null) {
 			themeLabel.setText(movie.getTheme().toString());
-			audienceLabel.setText(movie.getAudience().toString());
+			switch(movie.getAudience()) {
+				case FOR_ALL:audienceLabel.setText("0+"); break;
+				case CHILDREN:audienceLabel.setText("12+"); break;
+				case TEENS:audienceLabel.setText("16+"); break;
+				case YOUTH:audienceLabel.setText("18+"); break;
+			}
 		} else {
 			themeLabel.setText("none");
 			audienceLabel.setText("none");
