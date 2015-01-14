@@ -148,6 +148,7 @@ public class NewMovieDialogController {
     }
 	private void sendChannel() {
 		StringBuilder sb = new StringBuilder();
+		//sb.delete(0, sb.length());
 		File file = new File("TV channel.txt");
 		File file1;
 		try {
@@ -172,10 +173,11 @@ public class NewMovieDialogController {
 						);
 						try {
 							s1 = in1.readLine();
+							sb.delete(0, sb.length());
 							sb.append(s1);
 							sb.append("\n");
 							s2 = in1.readLine();
-							if (s2 == null || ((movie.getTheme() == Theme.MOVIES || movie.getTheme() == Theme.FOOD) && (s2.substring(s2.indexOf(" ", s2.indexOf(" ")+1)+1, s2.lastIndexOf(" ")).equals("MOVIES") || s2.substring(s2.indexOf(" ", s2.indexOf(" ")+1)+1, s2.lastIndexOf(" ")).equals("FOOD"))) || ((movie.getTheme() == Theme.SPORT || movie.getTheme() == Theme.CARS) && (s2.substring(s2.indexOf(" ", s2.indexOf(" ")+1)+1, s2.lastIndexOf(" ")).equals("SPORT") || s2.substring(s2.indexOf(" ", s2.indexOf(" ")+1)+1, s2.lastIndexOf(" ")).equals("CARS"))) || ((movie.getTheme() == Theme.SOCIAL) && (s2.substring(s2.indexOf(" ", s2.indexOf(" ")+1)+1, s2.lastIndexOf(" ")).equals("SOCIAL"))) || ((movie.getTheme() == Theme.CHILDREN) && (s2.substring(s2.indexOf(" ", s2.indexOf(" ")+1)+1, s2.lastIndexOf(" ")).equals("CHILDREN"))))
+							if (s2 == null || ((movie.getTheme() == Theme.MOVIES || movie.getTheme() == Theme.FOOD) && (s2.substring(s2.indexOf(" ", s2.indexOf(" ")+1)+1, s2.lastIndexOf(" ")).equals("MOVIES") || s2.substring(s2.indexOf(" ", s2.indexOf(" ")+1)+1, s2.lastIndexOf(" ")).equals("FOOD"))) || ((movie.getTheme() == Theme.SPORT || movie.getTheme() == Theme.CARS) && (s2.substring(s2.indexOf(" ", s2.indexOf(" ")+1)+1, s2.lastIndexOf(" ")).equals("SPORT") || s2.substring(s2.indexOf(" ", s2.indexOf(" ")+1)+1, s2.lastIndexOf(" ")).equals("CARS"))) || ((movie.getTheme() == Theme.SOCIAL) && (s2.substring(s2.indexOf(" ", s2.indexOf(" ")+1)+1, s2.lastIndexOf(" ")).equals("SOCIAL"))) || ((movie.getTheme() == Theme.CHILDREN) && (s2.substring(s2.indexOf(" ", s2.indexOf(" ")+1)+1, s2.lastIndexOf(" ")).equals("CHILDREN")))) {
 								if (movie.getAudience() == Audience.YOUTH) {
 									if (Integer.parseInt(s1.substring(s1.indexOf(" ")+1))*Integer.parseInt(movie.getTime()) < mainApp.getCompany().getBudget() ) {
 										mainApp.getCompany().setBudget(mainApp.getCompany().getBudget() - Integer.parseInt(s1.substring(s1.indexOf(" ")+1))*Integer.parseInt(movie.getTime()));
@@ -191,6 +193,8 @@ public class NewMovieDialogController {
 										flag = false;
 									}
 								}
+							
+							} 
 							if (s2!=null) {
 								sb.append(s2);
 								sb.append("\n");

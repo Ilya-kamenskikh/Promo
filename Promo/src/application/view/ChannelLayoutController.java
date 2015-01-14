@@ -8,6 +8,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -38,6 +39,12 @@ public class ChannelLayoutController{
 	@FXML
 	private TableColumn<Movie, String> time;
 	
+	@FXML
+	private Button accept;
+	
+	@FXML
+	private Button reject;
+	
 	private MainApp mainApp;
 	
 	private boolean flag;
@@ -64,7 +71,47 @@ public class ChannelLayoutController{
 	
 	@FXML
 	private void handleAccept(){
-		
+		StringBuilder sb = new StringBuilder();
+		int selectIndex = content.getSelectionModel().getSelectedIndex();
+		if (selectIndex >= 0) {
+			File file = new File("Channels\\" + mainApp.getChannel().getName() + ".txt");
+			try {
+				BufferedReader in = new BufferedReader(
+					new InputStreamReader(
+					    new FileInputStream( file.getAbsoluteFile() ), "UTF-8"
+					)
+				);
+				try {
+					String s = null;
+					sb.append(in.readLine());
+					sb.append("\n");
+					while ((s = in.readLine()) != null) {
+	                	if (s.substring(0, s.indexOf(" ")).equals(content.getItems().get(selectIndex).getName()) )
+	                		if (s.substring(s.indexOf(" ")+1, s.indexOf(" ", s.indexOf(" ")+1)).equals(content.getItems().get(selectIndex).getTime()))
+	                			if (s.substring(s.indexOf(" ", s.indexOf(" ")+1)+1, s.lastIndexOf(" ")).equals(content.getItems().get(selectIndex).getTheme().toString()))
+	                				if (s.substring(s.lastIndexOf(" ")+1, s.indexOf(":")).equals(content.getItems().get(selectIndex).getAudience().toString())) {
+	                					nameCompany = s.substring(s.indexOf(":")+1);
+	                					//movie = s;
+	                					changeNameChannelinCompany(content.getItems().get(selectIndex));
+	                					s = s.substring(0, s.indexOf(":")) + ":true";
+	                				}
+	                    sb.append(s);
+	                    sb.append("\n");
+	                }
+					PrintWriter out = new PrintWriter(file);
+	    			
+	    			try {
+	    				out.append(sb);
+	    			} finally {
+	    	            out.close();
+	    	        }
+				} finally {
+					in.close();
+				}
+			} catch(IOException e) {
+	            throw new RuntimeException(e);
+	        }
+		}
 	}
 	
 	@FXML
@@ -132,6 +179,13 @@ public class ChannelLayoutController{
 				case CHILDREN:audienceLabel.setText("12+"); break;
 				case TEENS:audienceLabel.setText("16+"); break;
 				case YOUTH:audienceLabel.setText("18+"); break;
+			}
+			if (!movie.getNameChannel().equals("not found")) {
+				accept.setOpacity(0);
+				reject.setOpacity(0);
+			} else {
+				accept.setOpacity(1);
+				reject.setOpacity(1);
 			}
 		} else {
 			themeLabel.setText("none");
@@ -202,6 +256,52 @@ public class ChannelLayoutController{
 			} finally {
 				in.close();
 			}
+		} catch(IOException e) {
+            throw new RuntimeException(e);
+        }
+	}
+	
+	private void changeNameChannelinCompany(Movie movie) {
+		StringBuilder sb = new StringBuilder();
+		movie.setNameChannel(mainApp.getChannel().getName());
+		File file = new File("Companies\\" + nameCompany + ".txt");
+		try {
+			BufferedReader in = new BufferedReader(
+				new InputStreamReader(
+					new FileInputStream( file.getAbsoluteFile() ), "UTF-8"
+				)
+			);
+			try {
+				String s = null;
+				String s1 = null;
+				if (movie.getAudience() == Audience.YOUTH) {
+					sb.append(Integer.parseInt(in.readLine()) - mainApp.getChannel().getNightPrice() * Integer.parseInt(movie.getTime()));
+				} else {
+					sb.append(Integer.parseInt(in.readLine()) - mainApp.getChannel().getDayPrice() * Integer.parseInt(movie.getTime()));
+				}
+				//int i = Integer.parseInt(in.readLine()) - mainApp.getChannel().getDayPrice()*(Integer.parseInt(movie.substring(movie.indexOf(" ")+1, movie.indexOf(" ", movie.indexOf(" ")+1))));
+				sb.append("\n");
+				while ((s = in.readLine())!=null){
+					if (s.substring(0, s.indexOf(" ")).equals(movie.getName()) )
+                		if (s.substring(s.indexOf(" ")+1, s.indexOf(" ", s.indexOf(" ")+1)).equals(movie.getTime()))
+                			if (s.substring(s.indexOf(" ", s.indexOf(" ")+1)+1, s.lastIndexOf(" ")).equals(movie.getTheme().toString()))
+                				if (s.substring(s.lastIndexOf(" ")+1, s.indexOf(":")).equals(movie.getAudience().toString())) {
+									s1 = mainApp.getChannel().getName();
+									s1.replace(" ", "_");
+									s = s.substring(0, s.indexOf(":")) + ":" + s1;
+					}
+					sb.append(s);
+					sb.append("\n");
+				}
+				PrintWriter out = new PrintWriter(file);
+				try {
+					out.print(sb);
+				} finally {
+		            out.close();
+		        }
+			} finally {
+				in.close();
+	        }
 		} catch(IOException e) {
             throw new RuntimeException(e);
         }
