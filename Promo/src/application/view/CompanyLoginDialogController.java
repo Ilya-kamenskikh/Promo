@@ -37,8 +37,12 @@ public class CompanyLoginDialogController {
     	String errorMessage = "";
     	try {
     		if(!file.exists()){
-				file.createNewFile();
-				return true;
+				Dialogs.create()
+					.title("Login not exists")
+					.masthead("Please enter the correct username and password")
+					.message("Not username and password")
+					.showError();
+				return false;
 			}
     		
 	    	 BufferedReader in = new BufferedReader(
@@ -48,6 +52,7 @@ public class CompanyLoginDialogController {
 	         );
 	    	 try {
 	    		 String s = null;
+	    		 
 	    		 while ((s = in.readLine())!=null){
 	    			 errorMessage = "This username not exist";
 	    			 if (s.substring(0, s.indexOf(':')).equals(userName.getText())){
