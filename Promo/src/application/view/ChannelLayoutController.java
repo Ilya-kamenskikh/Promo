@@ -66,7 +66,7 @@ public class ChannelLayoutController{
 	
 	@FXML
 	private void handleEdit(){
-		
+		mainApp.showChannelChangeAccount();
 	}
 	
 	@FXML

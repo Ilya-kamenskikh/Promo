@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 import application.model.Channel;
 import application.model.Company;
 import application.model.Movie;
+import application.view.ChannelChangeAccountDialogController;
 import application.view.ChannelLayoutController;
 import application.view.CompanyChangeAccountController;
 import application.view.CompanyLayoutController;
@@ -235,6 +236,34 @@ public class MainApp extends Application {
             dialogStage.setScene(scene);
             
             CompanyChangeAccountController controller = loader.getController();
+            controller.setDialogStage(dialogStage);
+            controller.setMainApp(this);
+            
+            // Show the dialog and wait until the user closes it
+            dialogStage.showAndWait();
+            
+            
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void showChannelChangeAccount() {
+    	try {
+            // Load person overview.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class.getResource("view/ChannelChangeAccountDialog.fxml"));
+            AnchorPane page = (AnchorPane) loader.load();
+     
+            // Create the dialog Stage.
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Change Account");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(primaryStage);
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+            
+            ChannelChangeAccountDialogController controller = loader.getController();
             controller.setDialogStage(dialogStage);
             controller.setMainApp(this);
             
