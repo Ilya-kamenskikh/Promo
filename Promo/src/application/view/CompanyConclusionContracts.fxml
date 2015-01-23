@@ -124,6 +124,10 @@
                               <Cursor fx:constant="TEXT" />
                            </cursor>
                         </TextField>
+                        <Label text="Label" GridPane.rowIndex="2" />
+                        <Label text="Label" GridPane.rowIndex="3" />
+                        <Label text="Label" GridPane.rowIndex="4" />
+                        <Label text="Label" GridPane.rowIndex="5" />
                      </children>
                   </GridPane>
                   <CheckBox layoutX="375.0" layoutY="184.0" mnemonicParsing="false" text="Select">

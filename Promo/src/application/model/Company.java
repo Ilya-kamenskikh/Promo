@@ -33,12 +33,12 @@ public class Company {
 				file.createNewFile();
 				PrintWriter out = new PrintWriter(file);
 				try {
-					out.print(1000);
+					out.print(10000);
 				} finally {
 		            out.close();
 		        }
 				this.name = new SimpleStringProperty(name);
-				this.budget = new SimpleIntegerProperty(1000);
+				this.budget = new SimpleIntegerProperty(10000);
 			} else {
 				BufferedReader in = new BufferedReader(
 			        new InputStreamReader(
@@ -51,6 +51,8 @@ public class Company {
 					String timeMovie = null;
 					Theme theme = null;
 					Audience audience = null;
+					//int rating = 0;
+					//οττ
 					
 					this.budget = new SimpleIntegerProperty(Integer.parseInt(in.readLine()));
 	                while ((s = in.readLine()) != null) {
@@ -72,13 +74,8 @@ public class Company {
 		    				case "TEENS": audience = Audience.TEENS; break;
 		    				case "YOUTH": audience = Audience.YOUTH; break;
 	                    }
-	                    s = s.substring(s.indexOf(":")+1);
-	                    if (s.substring(s.indexOf(":")+1).equals("notfound")) {
-	                    	getMovies().add(new Movie(nameMovie, timeMovie, theme, audience));
-	                    } else {
-	                    	s.replace("_", " ");
-	                    	getMovies().add(new Movie(nameMovie, timeMovie, theme, audience, s));
-	                    }
+	                    //rating = Integer.parseInt(s.substring(s.lastIndexOf(" ")+1, s.indexOf(":")));
+	                    getMovies().add(new Movie(nameMovie, timeMovie, theme, audience, Integer.parseInt(s.substring(s.indexOf(";")))));
 	                }
 				} finally {
 					in.close();
@@ -90,6 +87,25 @@ public class Company {
         }
 	}
 	
+//οττ
+	private void getMoviesInformationFile(String name){
+		File file = new File("Companies\\Movies\\"+name+".txt");
+		try {
+			BufferedReader in = new BufferedReader(
+				new InputStreamReader(
+				    new FileInputStream( file.getAbsoluteFile() ), "UTF-8"
+				)
+			);
+			try {
+
+			} finally {
+				in.close();
+			} 
+		} catch(IOException e) {
+            throw new RuntimeException(e);
+        }
+	}
+//	
 
 	public String getName() {
 		return name.get();
