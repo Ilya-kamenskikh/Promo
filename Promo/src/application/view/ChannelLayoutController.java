@@ -23,9 +23,26 @@ import application.model.Theme;
 public class ChannelLayoutController{
 	
 	@FXML
+	private Label nightPriceLabel;
+	@FXML
+	private Label morningPriceLabel;
+	@FXML
 	private Label dayPriceLabel;
 	@FXML
-	private Label nightPriceLabel;
+	private Label afternoonPriceLabel;
+	@FXML
+	private Label eveningPriceLabel;
+	@FXML
+	private Label nightRatingFactorLabel;
+	@FXML
+	private Label morningRatingFactorLabel;
+	@FXML
+	private Label dayRatingFactorLabel;
+	@FXML
+	private Label afternoonRatingFactorLabel;
+	@FXML
+	private Label eveningRatingFactorLabel;
+	
 	@FXML
 	private Label nameLabel;
 	@FXML

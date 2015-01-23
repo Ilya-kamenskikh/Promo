@@ -1,35 +1,30 @@
 package application.model;
 
+import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 public class Movie {
 	private final StringProperty name;
-	private final StringProperty nameChannel;
+	//private final StringProperty nameChannel;
 	private final StringProperty time;
 	private final ObjectProperty<Theme> theme;
 	private final ObjectProperty<Audience> audience;
+	private final IntegerProperty rating;
 	
 	public Movie() {
-		this(null, null, null, null);
+		this(null, null, null, null, null);
 	}
 	
-	public Movie(String name, String time, Theme theme, Audience audience) {
+	public Movie(String name, String time, Theme theme, Audience audience, Integer rating) {
 		this.name = new SimpleStringProperty(name);
 		this.time = new SimpleStringProperty(time);
 		this.theme = new SimpleObjectProperty<Theme>(theme);
 		this.audience = new SimpleObjectProperty<Audience>(audience);
-		this.nameChannel = new SimpleStringProperty("not found");
-	}
-	
-	public Movie(String name, String time, Theme theme, Audience audience, String nameChannel) {
-		this.name = new SimpleStringProperty(name);
-		this.time = new SimpleStringProperty(time);
-		this.theme = new SimpleObjectProperty<Theme>(theme);
-		this.audience = new SimpleObjectProperty<Audience>(audience);
-		this.nameChannel = new SimpleStringProperty(nameChannel);
+		this.rating = new SimpleIntegerProperty(rating);
 	}
 	
 	public String getName() {
@@ -42,14 +37,14 @@ public class Movie {
 		return name;
 	}
 	
-	public String getNameChannel() {
-		return nameChannel.get();
+	public Integer getRatingChannel() {
+		return rating.get();
 	}
-	public void setNameChannel(String name) {
-		this.nameChannel.set(name);
+	public void setNameChannel(Integer rating) {
+		this.rating.set(rating);
 	}
-	public StringProperty nameChannelProperty(){
-		return nameChannel;
+	public IntegerProperty ratingProperty(){
+		return rating;
 	}
 	
 	public String getTime() {
