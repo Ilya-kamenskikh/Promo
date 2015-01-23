@@ -52,7 +52,7 @@
                   <Insets right="10.0" />
                </HBox.margin>
             </Button>
-            <Button layoutX="301.0" layoutY="247.0" mnemonicParsing="false" onAction="#handleCancel" prefWidth="55.0" text="Cansel" />
+            <Button layoutX="301.0" layoutY="247.0" mnemonicParsing="false" onAction="#handleCancel" prefWidth="55.0" text="Canсel" />
          </children>
       </HBox>
       <Label fx:id="message" layoutX="187.0" layoutY="59.0" />

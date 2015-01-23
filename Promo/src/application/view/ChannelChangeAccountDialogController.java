@@ -17,8 +17,6 @@ import javafx.stage.Stage;
 public class ChannelChangeAccountDialogController {
 	
 	@FXML
-	private TextField name;
-	@FXML
 	private TextField dayPrice;
 	@FXML
 	private TextField nightPrice;
@@ -98,11 +96,6 @@ public class ChannelChangeAccountDialogController {
 		            throw new RuntimeException(e);
 		        }
 			}
-			if (!(name.getText() == null || name.getText().length() == 0)) {
-				file.renameTo(new File("Companies\\"+name.getText() + ".txt"));
-				mainApp.getCompany().setName(name.getText());
-				changeChannelName(name.getText());
-			}
 		}
 		dialogStage.close();
 		mainApp.showChannelLayout();
@@ -124,8 +117,8 @@ public class ChannelChangeAccountDialogController {
 	private boolean isInputValid() {
     	String errorMessage = "";
     	
-    	if ((name.getText() == null || name.getText().length() == 0) && (dayPrice.getText() == null || dayPrice.getText().length() == 0) && (nightPrice.getText() == null || nightPrice.getText().length() == 0)) {
-    		errorMessage += "No valid name or price!\n";
+    	if ((dayPrice.getText() == null || dayPrice.getText().length() == 0) && (nightPrice.getText() == null || nightPrice.getText().length() == 0)) {
+    		errorMessage += "No valid price!\n";
     	}
     		
     	if (errorMessage.length() == 0) {
@@ -140,38 +133,4 @@ public class ChannelChangeAccountDialogController {
     	}
     }
 	
-	private void changeChannelName(String name) {
-		StringBuilder sb = new StringBuilder();
-		File file = new File("Channel.txt");
-		try {
-			BufferedReader in = new BufferedReader(
-	            new InputStreamReader(
-	                new FileInputStream( file.getAbsoluteFile() ), "UTF-8"
-	            )
-	        );
-	        try {
-	            String s = null;
-	            while ((s = in.readLine()) != null) {
-	            	if (s.substring(0, s.indexOf(':')).equals(mainApp.getLogin())){
-	            		s = s.substring(0, s.lastIndexOf(':')+1);
-	            		s+=name;
-	            	}
-	                sb.append(s);
-	                sb.append("\n");
-	            }
-	            
-	        } finally {
-	            in.close();
-	        }
-	        PrintWriter out = new PrintWriter(file);
-			
-			try {
-				out.append(sb);
-			} finally {
-	            out.close();
-	        }
-		} catch(IOException e) {
-            throw new RuntimeException(e);
-        }
-	}
 }
