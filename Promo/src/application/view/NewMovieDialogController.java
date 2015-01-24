@@ -8,7 +8,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -26,16 +26,16 @@ public class NewMovieDialogController {
 	@FXML
 	private TextField time;
 	@FXML
-	private ChoiceBox<String> theme;
+	private ComboBox<String> theme;
 	@FXML
-	private ChoiceBox<String> audience;
+	private ComboBox<String> audience;
 	
 	private Stage dialogStage;
 	private MainApp mainApp;
 	private Theme t;
 	private Audience a;
 	private Movie movie;
-	private boolean flag;
+	//private boolean flag;
 	
 	@FXML
 	private void initialize() {
@@ -60,11 +60,11 @@ public class NewMovieDialogController {
 				case "16+": a = Audience.TEENS; break;
 				case "18+": a = Audience.YOUTH; break;
 			}
-			movie = new Movie(name.getText(), time.getText(), t, a);
+			movie = new Movie(name.getText(), time.getText(), t, a, 0);
 			mainApp.getCompany().getMovies().add(movie);
 			mainApp.getMovieData().setAll(mainApp.getCompany().getMovies());
 			dialogStage.close();
-			sendChannel();
+			//sendChannel();
 			writeFile();
 			//mainApp.showCompanyLayout();
 		}
@@ -99,7 +99,7 @@ public class NewMovieDialogController {
                     sb.append(s);
                     sb.append("\n");
                 }
-                sb.append(name.getText() + " " + time.getText() + " " + t.toString() + " " + a.toString() + ":" + "notfound");
+                sb.append(name.getText() + " " + time.getText() + " " + t.toString() + " " + a.toString() + ":" + "0");
                 sb.append("\n");
                 PrintWriter out = new PrintWriter(file);
     			
@@ -146,7 +146,7 @@ public class NewMovieDialogController {
     		return false;
     	}
     }
-	private void sendChannel() {
+	/*private void sendChannel() {
 		StringBuilder sb = new StringBuilder();
 		//sb.delete(0, sb.length());
 		File file = new File("TV channel.txt");
@@ -220,5 +220,5 @@ public class NewMovieDialogController {
 		} catch(IOException e) {
             throw new RuntimeException(e);
         }
-	}
+	}*/
 }

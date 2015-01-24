@@ -17,6 +17,7 @@ import application.model.Movie;
 import application.view.ChannelChangeAccountDialogController;
 import application.view.ChannelLayoutController;
 import application.view.CompanyChangeAccountController;
+import application.view.CompanyConclusionContractsController;
 import application.view.CompanyLayoutController;
 import application.view.CompanyLoginDialogController;
 import application.view.EntryController;
@@ -27,6 +28,7 @@ public class MainApp extends Application {
 	private Stage primaryStage;
 	private BorderPane rootLayout;
 	private ObservableList<Movie> movieData = FXCollections.observableArrayList();
+	private ObservableList<Channel> channelsData = FXCollections.observableArrayList();
 	private Company company;
 	private Channel channel;
 	private String login;
@@ -37,6 +39,10 @@ public class MainApp extends Application {
 	
 	public String getLogin(){
 		return login;
+	}
+	
+	public ObservableList<Channel> getChannelsData() {
+		return channelsData;
 	}
 	
 	public ObservableList<Movie> getMovieData() {
@@ -264,6 +270,34 @@ public class MainApp extends Application {
             dialogStage.setScene(scene);
             
             ChannelChangeAccountDialogController controller = loader.getController();
+            controller.setDialogStage(dialogStage);
+            controller.setMainApp(this);
+            
+            // Show the dialog and wait until the user closes it
+            dialogStage.showAndWait();
+            
+            
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void showCompanyConclusionContracts() {
+    	try {
+            // Load person overview.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class.getResource("view/CompanyConclusionContracts.fxml"));
+            AnchorPane page = (AnchorPane) loader.load();
+     
+            // Create the dialog Stage.
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Contracts");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(primaryStage);
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+            
+            CompanyConclusionContractsController controller = loader.getController();
             controller.setDialogStage(dialogStage);
             controller.setMainApp(this);
             

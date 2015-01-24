@@ -12,9 +12,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-
-import org.controlsfx.dialog.Dialogs;
-
 import application.MainApp;
 import application.model.Audience;
 import application.model.Movie;
@@ -32,6 +29,7 @@ public class ChannelLayoutController{
 	private Label afternoonPriceLabel;
 	@FXML
 	private Label eveningPriceLabel;
+	
 	@FXML
 	private Label nightRatingFactorLabel;
 	@FXML
@@ -42,6 +40,17 @@ public class ChannelLayoutController{
 	private Label afternoonRatingFactorLabel;
 	@FXML
 	private Label eveningRatingFactorLabel;
+	
+	@FXML
+	private Label nightTimeLeftLabel;
+	@FXML
+	private Label morningTimeLeftLabel;
+	@FXML
+	private Label dayTimeLeftLabel;
+	@FXML
+	private Label afternoonTimeLeftLabel;
+	@FXML
+	private Label eveningTimeLeftLabel;
 	
 	@FXML
 	private Label nameLabel;
@@ -87,7 +96,7 @@ public class ChannelLayoutController{
 	}
 	
 	@FXML
-	private void handleAccept(){
+	private void handleAccept(){/*
 		StringBuilder sb = new StringBuilder();
 		int selectIndex = content.getSelectionModel().getSelectedIndex();
 		if (selectIndex >= 0) {
@@ -100,17 +109,15 @@ public class ChannelLayoutController{
 				);
 				try {
 					String s = null;
-					sb.append(in.readLine());
-					sb.append("\n");
 					while ((s = in.readLine()) != null) {
 	                	if (s.substring(0, s.indexOf(" ")).equals(content.getItems().get(selectIndex).getName()) )
 	                		if (s.substring(s.indexOf(" ")+1, s.indexOf(" ", s.indexOf(" ")+1)).equals(content.getItems().get(selectIndex).getTime()))
 	                			if (s.substring(s.indexOf(" ", s.indexOf(" ")+1)+1, s.lastIndexOf(" ")).equals(content.getItems().get(selectIndex).getTheme().toString()))
 	                				if (s.substring(s.lastIndexOf(" ")+1, s.indexOf(":")).equals(content.getItems().get(selectIndex).getAudience().toString())) {
-	                					nameCompany = s.substring(s.indexOf(":")+1);
+	                					nameCompany = s.substring(s.indexOf(":")+1,s.indexOf(";"));
 	                					//movie = s;
 	                					changeNameChannelinCompany(content.getItems().get(selectIndex));
-	                					s = s.substring(0, s.indexOf(":")) + ":true";
+	                					s = s.substring(0, s.indexOf(":")) + ":true" + s.substring(s.indexOf(";"));
 	                				}
 	                    sb.append(s);
 	                    sb.append("\n");
@@ -128,11 +135,11 @@ public class ChannelLayoutController{
 			} catch(IOException e) {
 	            throw new RuntimeException(e);
 	        }
-		}
+		}*/
 	}
 	
 	@FXML
-	private void handleReject(){
+	private void handleReject(){/*
 		StringBuilder sb = new StringBuilder();
 		int selectIndex = content.getSelectionModel().getSelectedIndex();
 		if (selectIndex >= 0) {
@@ -180,7 +187,7 @@ public class ChannelLayoutController{
             	.masthead("No Person Selected")
             	.message("Please select a person in the table.")
             	.showWarning();
-		}
+		}*/
 	}
 	
 	@FXML
@@ -196,14 +203,14 @@ public class ChannelLayoutController{
 				case CHILDREN:audienceLabel.setText("12+"); break;
 				case TEENS:audienceLabel.setText("16+"); break;
 				case YOUTH:audienceLabel.setText("18+"); break;
-			}
+			}/*
 			if (!movie.getNameChannel().equals("not found")) {
 				accept.setOpacity(0);
 				reject.setOpacity(0);
 			} else {
 				accept.setOpacity(1);
 				reject.setOpacity(1);
-			}
+			}*/
 		} else {
 			themeLabel.setText("none");
 			audienceLabel.setText("none");
@@ -278,9 +285,8 @@ public class ChannelLayoutController{
         }
 	}
 	
-	private void changeNameChannelinCompany(Movie movie) {
+	/*private void changeNameChannelinCompany(Movie movie) {
 		StringBuilder sb = new StringBuilder();
-		movie.setNameChannel(mainApp.getChannel().getName());
 		File file = new File("Companies\\" + nameCompany + ".txt");
 		try {
 			BufferedReader in = new BufferedReader(
@@ -322,12 +328,28 @@ public class ChannelLayoutController{
 		} catch(IOException e) {
             throw new RuntimeException(e);
         }
-	}
+	}*/
 	
 	public void showChannel() {
 		nameLabel.setText(mainApp.getChannel().getName());
-		dayPriceLabel.setText(Integer.toString(mainApp.getChannel().getDayPrice()));
-		nightPriceLabel.setText(Integer.toString(mainApp.getChannel().getNightPrice()));
+		
+		nightPriceLabel.setText(Integer.toString(mainApp.getChannel().getPrice().get(0)));
+		morningPriceLabel.setText(Integer.toString(mainApp.getChannel().getPrice().get(1)));
+		dayPriceLabel.setText(Integer.toString(mainApp.getChannel().getPrice().get(2)));
+		afternoonPriceLabel.setText(Integer.toString(mainApp.getChannel().getPrice().get(3)));
+		eveningPriceLabel.setText(Integer.toString(mainApp.getChannel().getPrice().get(4)));
+		
+		nightRatingFactorLabel.setText(Integer.toString(mainApp.getChannel().getRatingFactor().get(0)));
+		morningRatingFactorLabel.setText(Integer.toString(mainApp.getChannel().getRatingFactor().get(1)));
+		dayRatingFactorLabel.setText(Integer.toString(mainApp.getChannel().getRatingFactor().get(2)));
+		afternoonRatingFactorLabel.setText(Integer.toString(mainApp.getChannel().getRatingFactor().get(3)));
+		eveningRatingFactorLabel.setText(Integer.toString(mainApp.getChannel().getRatingFactor().get(4)));
+		
+		nightTimeLeftLabel.setText(Integer.toString(mainApp.getChannel().getTimeLeft().get(0)));
+		morningTimeLeftLabel.setText(Integer.toString(mainApp.getChannel().getTimeLeft().get(1)));
+		dayTimeLeftLabel.setText(Integer.toString(mainApp.getChannel().getTimeLeft().get(2)));
+		afternoonTimeLeftLabel.setText(Integer.toString(mainApp.getChannel().getTimeLeft().get(3)));
+		eveningTimeLeftLabel.setText(Integer.toString(mainApp.getChannel().getTimeLeft().get(4)));
 	}
 	
 	public void setMainApp(MainApp mainApp) {

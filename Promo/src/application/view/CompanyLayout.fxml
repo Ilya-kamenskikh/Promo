@@ -15,7 +15,6 @@
                   <TableView fx:id="table" layoutX="6.0" layoutY="8.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columns>
                       <TableColumn fx:id="nameMovie" prefWidth="75.0" text="Name of the movie" />
-                      <TableColumn fx:id="nameChannel" prefWidth="75.0" text="TV channel" />
                     </columns>
                      <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -51,7 +50,7 @@
                         <Label fx:id="themeMovieLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                         <Label fx:id="audienceMovieLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                         <Label text="Rating" GridPane.rowIndex="4" />
-                        <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <Label fx:id="ratingMovieLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                      </children>
                   </GridPane>
                   <Button layoutX="11.0" layoutY="98.0" mnemonicParsing="false" onAction="#handleNewMovie" text="New Movie" />
@@ -61,10 +60,8 @@
                   <Label fx:id="budgetCompanyLabel" layoutX="121.0" layoutY="34.0" text="Label" />
                   <Label layoutX="13.0" layoutY="14.0" text="Company name:" />
                   <Button layoutX="228.0" layoutY="22.0" mnemonicParsing="false" onAction="#handleChangeAccount" text="Change account" />
-                  <Button layoutX="102.0" layoutY="351.0" mnemonicParsing="false" text="New Contracts" />
-                  <Button layoutX="9.0" layoutY="351.0" mnemonicParsing="false" text="Contracts" />
-                  <Label layoutX="14.0" layoutY="68.0" text="Available budget:" />
-                  <Label layoutX="121.0" layoutY="68.0" text="Label" />
+                  <Button layoutX="102.0" layoutY="351.0" mnemonicParsing="false" onAction="#handleNewContracts" text="New Contracts" />
+                  <Button layoutX="9.0" layoutY="351.0" mnemonicParsing="false" onAction="#handleContracts" text="Contracts" />
                </children>
             </AnchorPane>
         </items>

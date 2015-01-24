@@ -58,6 +58,10 @@ public class Channel {
 	private void getMoviesFile(String name){
 		File file = new File("Channels\\"+name+".txt");
 		try {
+			if (!file.exists()) {
+				file.createNewFile();
+				return;
+			}
 			BufferedReader in = new BufferedReader(
 				new InputStreamReader(
 				    new FileInputStream( file.getAbsoluteFile() ), "UTF-8"
@@ -143,7 +147,7 @@ public class Channel {
 						while ((s = in.readLine()) != null) {
 							getPrice().add(Integer.parseInt(s.substring(s.indexOf(":")+1, s.indexOf(":", s.indexOf(":")+1))));
 							getRatingFactor().add( Integer.parseInt( s.substring(s.indexOf(":", s.indexOf(":")+1)+1, s.lastIndexOf(":"))));
-							getTimeLeft().add(Integer.parseInt(s.substring(s.lastIndexOf(":"))));
+							getTimeLeft().add(Integer.parseInt(s.substring(s.lastIndexOf(":")+1)));
 						}
 					} finally {
 						in.close();

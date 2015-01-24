@@ -16,8 +16,7 @@ import org.controlsfx.dialog.Dialogs;
 import application.MainApp;
 
 public class CompanyChangeAccountController {
-	@FXML
-	private TextField name;
+	
 	@FXML
 	private TextField budget;
 	
@@ -65,11 +64,7 @@ public class CompanyChangeAccountController {
 		            throw new RuntimeException(e);
 		        }
 			}
-			if (!(name.getText() == null || name.getText().length() == 0)) {
-				file.renameTo(new File("Companies\\"+name.getText() + ".txt"));
-				mainApp.getCompany().setName(name.getText());
-				changeCompanyName(name.getText());
-			}
+			
 		}
 		dialogStage.close();
 		mainApp.showCompanyLayout();
@@ -91,8 +86,8 @@ public class CompanyChangeAccountController {
 	private boolean isInputValid() {
     	String errorMessage = "";
     	
-    	if ((name.getText() == null || name.getText().length() == 0) && (budget.getText() == null || budget.getText().length() == 0)) {
-    		errorMessage += "No valid name and budget!\n";
+    	if ((budget.getText() == null || budget.getText().length() == 0)) {
+    		errorMessage += "No valid budget!\n";
     	}
     		
     	if (errorMessage.length() == 0) {
@@ -107,7 +102,7 @@ public class CompanyChangeAccountController {
     	}
     }
 	
-	private void changeCompanyName(String name) {
+	/*private void changeCompanyName(String name) {
 		StringBuilder sb = new StringBuilder();
 		File file = new File("Company.txt");
 		try {
@@ -140,5 +135,5 @@ public class CompanyChangeAccountController {
 		} catch(IOException e) {
             throw new RuntimeException(e);
         }
-	}
+	}*/
 }

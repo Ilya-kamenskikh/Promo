@@ -13,13 +13,13 @@ public class CompanyLayoutController {
 	@FXML
 	private TableColumn<Movie, String> nameMovie;
 	@FXML
-	private TableColumn<Movie, String> nameChannel;
-	@FXML
 	private Label nameMovieLabel;
 	@FXML
 	private Label timeMovieLabel;
 	@FXML
 	private Label themeMovieLabel;
+	@FXML
+	private Label ratingMovieLabel;
 	@FXML
 	private Label audienceMovieLabel;
 	@FXML
@@ -32,7 +32,6 @@ public class CompanyLayoutController {
 	@FXML
     private void initialize() {
 		nameMovie.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
-		nameChannel.setCellValueFactory(cellData -> cellData.getValue().nameChannelProperty());
 		
 		showMovieDetails(null);
 		
@@ -56,6 +55,16 @@ public class CompanyLayoutController {
 		mainApp.showEntryLayout();
 	}
 	
+	@FXML
+	private void handleContracts() {
+		
+	}
+	
+	@FXML
+	private void handleNewContracts() {
+		mainApp.showCompanyConclusionContracts();
+	}
+	
 	private void showMovieDetails(Movie movie) {
 		if (movie!= null) {
 			nameMovieLabel.setText(movie.getName());
@@ -67,12 +76,14 @@ public class CompanyLayoutController {
 				case TEENS:audienceMovieLabel.setText("16+"); break;
 				case YOUTH:audienceMovieLabel.setText("18+"); break;
 			}
+			ratingMovieLabel.setText(movie.getRatingChannel().toString());
 			//audienceMovieLabel.setText(movie.getAudience().toString());
 		} else {
 			nameMovieLabel.setText("none");
 			timeMovieLabel.setText("none");
 			themeMovieLabel.setText("none");
 			audienceMovieLabel.setText("none");
+			ratingMovieLabel.setText("none");
 		}
 	}
 	

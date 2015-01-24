@@ -30,7 +30,7 @@
          <children>
             <Label text="6:00-9:00" GridPane.rowIndex="2" />
             <Label text="9:00-17:00" GridPane.rowIndex="3" />
-            <TextField fx:id="dayPrice" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="80.0" text="250" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="morningPrice" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="80.0" text="250" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Label text="0:00-6:00" GridPane.rowIndex="1" />
             <Label text="17:00-20:00" GridPane.rowIndex="4" />
             <Label text="20:00-0:00" GridPane.rowIndex="5" />
@@ -49,15 +49,15 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <TextField fx:id="dayPrice1" layoutX="116.0" layoutY="65.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="80.0" text="150" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="dayPrice11" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="80.0" text="250" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <TextField fx:id="dayPrice111" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="80.0" text="200" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <TextField fx:id="dayPrice112" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="80.0" text="300" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <TextField fx:id="dayPrice113" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="80.0" text="5" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <TextField fx:id="dayPrice114" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="80.0" text="15" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-            <TextField fx:id="dayPrice115" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="80.0" text="10" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-            <TextField fx:id="dayPrice116" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="80.0" text="15" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-            <TextField fx:id="dayPrice117" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="80.0" text="20" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+            <TextField fx:id="nightPrice" layoutX="116.0" layoutY="65.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="80.0" text="150" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="afternoonPrice" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="80.0" text="250" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField fx:id="dayPrice" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="80.0" text="200" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="eveningPrice" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="80.0" text="300" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <TextField fx:id="nightRating" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="80.0" text="5" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <TextField fx:id="morningRating" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="80.0" text="15" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <TextField fx:id="dayRating" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="80.0" text="10" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <TextField fx:id="afternoonRating" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="80.0" text="15" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+            <TextField fx:id="eveningRating" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="80.0" text="20" GridPane.columnIndex="2" GridPane.rowIndex="5" />
          </children>
       </GridPane>
       <Button layoutX="272.0" layoutY="262.0" mnemonicParsing="false" onAction="#handleOk" prefHeight="24.0" prefWidth="49.0" text="Ok" />

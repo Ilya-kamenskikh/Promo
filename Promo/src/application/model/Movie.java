@@ -40,7 +40,7 @@ public class Movie {
 	public Integer getRatingChannel() {
 		return rating.get();
 	}
-	public void setNameChannel(Integer rating) {
+	public void setRatingChannel(Integer rating) {
 		this.rating.set(rating);
 	}
 	public IntegerProperty ratingProperty(){

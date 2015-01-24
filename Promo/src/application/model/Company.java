@@ -33,7 +33,7 @@ public class Company {
 				file.createNewFile();
 				PrintWriter out = new PrintWriter(file);
 				try {
-					out.print(10000);
+					out.print(10000 + "\n");
 				} finally {
 		            out.close();
 		        }
@@ -75,7 +75,7 @@ public class Company {
 		    				case "YOUTH": audience = Audience.YOUTH; break;
 	                    }
 	                    //rating = Integer.parseInt(s.substring(s.lastIndexOf(" ")+1, s.indexOf(":")));
-	                    getMovies().add(new Movie(nameMovie, timeMovie, theme, audience, Integer.parseInt(s.substring(s.indexOf(";")))));
+	                    getMovies().add(new Movie(nameMovie, timeMovie, theme, audience, Integer.parseInt(s.substring(s.indexOf(":")+1))));
 	                }
 				} finally {
 					in.close();

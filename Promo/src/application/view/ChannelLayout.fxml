@@ -63,19 +63,19 @@
                         </Label>
                         <Label fx:id="nightRatingFactorLabel" text="Label" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                         <Label fx:id="morningRatingFactorLabel" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                        <Label text="Label" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                        <Label text="Label" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-                        <Label text="Label" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                        <Label fx:id="dayRatingFactorLabel" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                        <Label fx:id="afternoonRatingFactorLabel" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                        <Label fx:id="eveningRatingFactorLabel" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="5" />
                         <Label text="Time  of show" GridPane.columnIndex="3">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                        <Label text="Label" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                        <Label text="Label" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                        <Label text="Label" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-                        <Label text="Label" GridPane.columnIndex="3" GridPane.rowIndex="4" />
-                        <Label text="Label" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+                        <Label fx:id="nightTimeLeftLabel" text="Label" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                        <Label fx:id="morningTimeLeftLabel" text="Label" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                        <Label fx:id="dayTimeLeftLabel" text="Label" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                        <Label fx:id="afternoonTimeLeftLabel" text="Label" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                        <Label fx:id="eveningTimeLeftLabel" text="Label" GridPane.columnIndex="3" GridPane.rowIndex="5" />
                      </children>
                   </GridPane>
                   <Label layoutX="25.0" layoutY="14.0" text="Channel name:">
