@@ -1,11 +1,18 @@
 package application.view;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import application.MainApp;
 import application.model.Movie;
+import application.model.Channel;
 
 public class CompanyLayoutController {
 	@FXML
@@ -62,6 +69,7 @@ public class CompanyLayoutController {
 	
 	@FXML
 	private void handleNewContracts() {
+		getChannelsTable();
 		mainApp.showCompanyConclusionContracts();
 	}
 	
@@ -97,4 +105,36 @@ public class CompanyLayoutController {
 		
 		table.setItems(mainApp.getMovieData());
 	}
+	
+	private void getChannelsTable() {
+		File file = new File("TV channel.txt");
+		try {
+			if (!file.exists()) {
+				file.createNewFile();
+				return;
+			}
+			BufferedReader in = new BufferedReader(
+				new InputStreamReader(
+				    new FileInputStream( file.getAbsoluteFile() ), "UTF-8"
+				)
+			);
+			try {
+				String s = null;
+				String nameChannel = null;
+				mainApp.getChannelsData().clear();
+				while ((s = in.readLine()) != null) {
+					nameChannel = s.substring(s.lastIndexOf(":")+1);
+					mainApp.getChannelsData().add(new Channel(nameChannel));
+				}
+			} finally {
+				in.close();
+			} 
+		} catch(IOException e) {
+			throw new RuntimeException(e);
+		}		
+	}
+
 }
+		
+	
+
