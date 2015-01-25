@@ -1,6 +1,10 @@
 package application.view;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -71,10 +75,16 @@ public class CompanyConclusionContractsController {
 	
 	@FXML
 	private CheckBox select;
+	@FXML
+	private Button ok;
 
 	private MainApp mainApp;
 	
 	private Stage dialogStage;
+	
+	private List<Boolean> selects = new ArrayList<Boolean>();
+	
+	private int selectIndex = - 1;
 	
 	@FXML
 	private void initialize() {
@@ -89,6 +99,7 @@ public class CompanyConclusionContractsController {
 	@FXML
 	private void handleOk() {
 		
+		
 	}
 	
 	@FXML
@@ -96,58 +107,90 @@ public class CompanyConclusionContractsController {
 		
 	}
 	
+	
 	@FXML
 	private void handleCancel() {
 		dialogStage.close();
 	}
 	
 	private void showChannelsDetails(Channel channel) {
-		if (channel != null){
-			nightPriceLabel.setText(Integer.toString(channel.getPrice().get(0)));
-			morningPriceLabel.setText(Integer.toString(channel.getPrice().get(1)));
-			dayPriceLabel.setText(Integer.toString(channel.getPrice().get(2)));
-			afternoonPriceLabel.setText(Integer.toString(channel.getPrice().get(3)));
-			eveningPriceLabel.setText(Integer.toString(channel.getPrice().get(4)));
-			
-			nightRatingFactorLabel.setText(Integer.toString(channel.getRatingFactor().get(0)));
-			morningRatingFactorLabel.setText(Integer.toString(channel.getRatingFactor().get(1)));
-			dayRatingFactorLabel.setText(Integer.toString(channel.getRatingFactor().get(2)));
-			afternoonRatingFactorLabel.setText(Integer.toString(channel.getRatingFactor().get(3)));
-			eveningRatingFactorLabel.setText(Integer.toString(channel.getRatingFactor().get(4)));
-			
-			nightTimeLeftLabel.setText(Integer.toString(channel.getTimeLeft().get(0)));
-			morningTimeLeftLabel.setText(Integer.toString(channel.getTimeLeft().get(1)));
-			dayTimeLeftLabel.setText(Integer.toString(channel.getTimeLeft().get(2)));
-			afternoonTimeLeftLabel.setText(Integer.toString(channel.getTimeLeft().get(3)));
-			eveningTimeLeftLabel.setText(Integer.toString(channel.getTimeLeft().get(4)));
-		} else {
-			nightPriceLabel.setText(null);
-			morningPriceLabel.setText(null);
-			dayPriceLabel.setText(null);
-			afternoonPriceLabel.setText(null);
-			eveningPriceLabel.setText(null);
-			
-			nightRatingFactorLabel.setText(null);
-			morningRatingFactorLabel.setText(null);
-			dayRatingFactorLabel.setText(null);
-			afternoonRatingFactorLabel.setText(null);
-			eveningRatingFactorLabel.setText(null);
-			
-			nightTimeLeftLabel.setText(null);
-			morningTimeLeftLabel.setText(null);
-			dayTimeLeftLabel.setText(null);
-			afternoonTimeLeftLabel.setText(null);
-			eveningTimeLeftLabel.setText(null);
-		}
+
+			if (channel != null){
+				//ok.setOpacity(0);
+				
+				if (selectIndex >= 0){
+					selects.set(selectIndex, select.isSelected());
+				}
+				
+				selectIndex = channelsTable.getSelectionModel().getSelectedIndex();
+				
+				nightPriceLabel.setText(Integer.toString(channel.getPrice().get(0)));
+				morningPriceLabel.setText(Integer.toString(channel.getPrice().get(1)));
+				dayPriceLabel.setText(Integer.toString(channel.getPrice().get(2)));
+				afternoonPriceLabel.setText(Integer.toString(channel.getPrice().get(3)));
+				eveningPriceLabel.setText(Integer.toString(channel.getPrice().get(4)));
+				
+				nightRatingFactorLabel.setText(Integer.toString(channel.getRatingFactor().get(0)));
+				morningRatingFactorLabel.setText(Integer.toString(channel.getRatingFactor().get(1)));
+				dayRatingFactorLabel.setText(Integer.toString(channel.getRatingFactor().get(2)));
+				afternoonRatingFactorLabel.setText(Integer.toString(channel.getRatingFactor().get(3)));
+				eveningRatingFactorLabel.setText(Integer.toString(channel.getRatingFactor().get(4)));
+				
+				nightTimeLeftLabel.setText(Integer.toString(channel.getTimeLeft().get(0)));
+				morningTimeLeftLabel.setText(Integer.toString(channel.getTimeLeft().get(1)));
+				dayTimeLeftLabel.setText(Integer.toString(channel.getTimeLeft().get(2)));
+				afternoonTimeLeftLabel.setText(Integer.toString(channel.getTimeLeft().get(3)));
+				eveningTimeLeftLabel.setText(Integer.toString(channel.getTimeLeft().get(4)));
+				
+				if (selectIndex>=0)
+					select.setSelected(selects.get(selectIndex));
+				
+				/*if(select.isSelected()){
+					ok.setOpacity(1);
+				}else{
+					ok.setOpacity(0);
+				}*/
+				
+			} else {
+				ok.setOpacity(0);
+				
+				nightPriceLabel.setText(null);
+				morningPriceLabel.setText(null);
+				dayPriceLabel.setText(null);
+				afternoonPriceLabel.setText(null);
+				eveningPriceLabel.setText(null);
+				
+				nightRatingFactorLabel.setText(null);
+				morningRatingFactorLabel.setText(null);
+				dayRatingFactorLabel.setText(null);
+				afternoonRatingFactorLabel.setText(null);
+				eveningRatingFactorLabel.setText(null);
+				
+				nightTimeLeftLabel.setText(null);
+				morningTimeLeftLabel.setText(null);
+				dayTimeLeftLabel.setText(null);
+				afternoonTimeLeftLabel.setText(null);
+				eveningTimeLeftLabel.setText(null);
+			}
+
 	}
 	
 	public void setMainApp(MainApp mainApp) {
 		this.mainApp = mainApp;
 		
 		channelsTable.setItems(mainApp.getChannelsData());
+		for (int i = 0; i < mainApp.getChannelsData().size(); ++i) {
+			selects.add(Boolean.FALSE);
+		}
 	}
 	
 	public void setDialogStage(Stage dialogStage) {
         this.dialogStage = dialogStage;
     }
+	
+	 public void showMovieInformation(int index) {
+		nameMovieLabel.setText(mainApp.getCompany().getMovies().get(index).getName());
+		timeMovieLabel.setText(mainApp.getCompany().getMovies().get(index).getTime());
+		availableBudgetLabel.setText(Integer.toString(mainApp.getCompany().getBudget()));
+	}
 }

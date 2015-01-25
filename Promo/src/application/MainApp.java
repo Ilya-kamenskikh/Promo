@@ -32,6 +32,11 @@ public class MainApp extends Application {
 	private Company company;
 	private Channel channel;
 	private String login;
+	private int index;
+	
+	public void setIndex(int index){
+		this.index = index;
+	}
 	
 	public void setLogin(String login) {
 		this.login = login;
@@ -152,7 +157,7 @@ public class MainApp extends Application {
      
             // Create the dialog Stage.
             Stage dialogStage = new Stage();
-            dialogStage.setTitle("Login Company");
+            dialogStage.setTitle("Login");
             dialogStage.initModality(Modality.WINDOW_MODAL);
             dialogStage.initOwner(primaryStage);
             Scene scene = new Scene(page);
@@ -282,6 +287,7 @@ public class MainApp extends Application {
         }
     }
     
+    
     public void showCompanyConclusionContracts() {
     	try {
             // Load person overview.
@@ -297,9 +303,11 @@ public class MainApp extends Application {
             Scene scene = new Scene(page);
             dialogStage.setScene(scene);
             
+            
             CompanyConclusionContractsController controller = loader.getController();
             controller.setDialogStage(dialogStage);
             controller.setMainApp(this);
+            controller.showMovieInformation(index);
             
             // Show the dialog and wait until the user closes it
             dialogStage.showAndWait();

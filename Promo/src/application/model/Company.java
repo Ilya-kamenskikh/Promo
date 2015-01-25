@@ -52,7 +52,7 @@ public class Company {
 					Theme theme = null;
 					Audience audience = null;
 					//int rating = 0;
-					//οττ
+					
 					
 					this.budget = new SimpleIntegerProperty(Integer.parseInt(in.readLine()));
 	                while ((s = in.readLine()) != null) {
@@ -87,7 +87,7 @@ public class Company {
         }
 	}
 	
-//οττ
+	
 	private void getMoviesInformationFile(String name){
 		File file = new File("Companies\\Movies\\"+name+".txt");
 		try {
@@ -105,7 +105,7 @@ public class Company {
             throw new RuntimeException(e);
         }
 	}
-//	
+	
 
 	public String getName() {
 		return name.get();

@@ -10,9 +10,9 @@
    <children>
       <SplitPane dividerPositions="0.35785953177257523" prefHeight="160.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+          <AnchorPane maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="398.0" prefWidth="211.0">
                <children>
-                  <TableView fx:id="table" layoutX="6.0" layoutY="8.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <TableView fx:id="table" layoutX="6.0" layoutY="8.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columns>
                       <TableColumn fx:id="nameMovie" prefWidth="75.0" text="Name of the movie" />
                     </columns>
@@ -59,9 +59,9 @@
                   <Label layoutX="13.0" layoutY="34.0" text="Total budget:" />
                   <Label fx:id="budgetCompanyLabel" layoutX="121.0" layoutY="34.0" text="Label" />
                   <Label layoutX="13.0" layoutY="14.0" text="Company name:" />
-                  <Button layoutX="228.0" layoutY="22.0" mnemonicParsing="false" onAction="#handleChangeAccount" text="Change account" />
-                  <Button layoutX="102.0" layoutY="351.0" mnemonicParsing="false" onAction="#handleNewContracts" text="New Contracts" />
-                  <Button layoutX="9.0" layoutY="351.0" mnemonicParsing="false" onAction="#handleContracts" text="Contracts" />
+                  <Button layoutX="221.0" layoutY="30.0" mnemonicParsing="false" onAction="#handleChangeAccount" text="Change budget" />
+                  <Button fx:id="newContracts" layoutX="102.0" layoutY="351.0" mnemonicParsing="false" onAction="#handleNewContracts" text="New Contracts" />
+                  <Button fx:id="contracts" layoutX="9.0" layoutY="351.0" mnemonicParsing="false" onAction="#handleContracts" text="Contracts" />
                </children>
             </AnchorPane>
         </items>

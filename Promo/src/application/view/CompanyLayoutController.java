@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -33,6 +34,12 @@ public class CompanyLayoutController {
 	private Label nameCompanyLabel;
 	@FXML
 	private Label budgetCompanyLabel;
+	
+	@FXML
+	private Button contracts;
+	@FXML
+	private Button newContracts;
+	
 	
 	private MainApp mainApp;
 	
@@ -70,11 +77,15 @@ public class CompanyLayoutController {
 	@FXML
 	private void handleNewContracts() {
 		getChannelsTable();
+		int selectIndex = table.getSelectionModel().getSelectedIndex();
+		mainApp.setIndex(selectIndex);
 		mainApp.showCompanyConclusionContracts();
 	}
 	
 	private void showMovieDetails(Movie movie) {
 		if (movie!= null) {
+			contracts.setOpacity(1);
+			newContracts.setOpacity(1);
 			nameMovieLabel.setText(movie.getName());
 			timeMovieLabel.setText(movie.getTime());
 			themeMovieLabel.setText(movie.getTheme().toString());
@@ -87,6 +98,8 @@ public class CompanyLayoutController {
 			ratingMovieLabel.setText(movie.getRatingChannel().toString());
 			//audienceMovieLabel.setText(movie.getAudience().toString());
 		} else {
+			contracts.setOpacity(0);
+			newContracts.setOpacity(0);
 			nameMovieLabel.setText("none");
 			timeMovieLabel.setText("none");
 			themeMovieLabel.setText("none");
@@ -105,6 +118,7 @@ public class CompanyLayoutController {
 		
 		table.setItems(mainApp.getMovieData());
 	}
+	
 	
 	private void getChannelsTable() {
 		File file = new File("TV channel.txt");
